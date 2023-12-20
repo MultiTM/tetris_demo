@@ -70,3 +70,14 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+UserSettings
+
+# Ignore temporaries from GameCI
+/[Aa]rtifacts/
+/[Cc]odeCoverage/
+build_BackUpThisFolder_ButDontShipItWithYourGame
+build_BurstDebugInformation_DoNotShip
+Recordings
+**/.DS_Store
+.idea
