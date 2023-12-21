@@ -21,8 +21,8 @@ namespace _Project._Scripts.Core
         private void Update()
         {
             ExecuteOnAnyKeyDown(_rotateKeys, () => _field.RotatePiece());
-            ExecuteOnAnyKeyDown(_moveLeftKeys, () => _field.MovePiece(Vector2Int.left));
-            ExecuteOnAnyKeyDown(_moveRightKeys, () => _field.MovePiece(Vector2Int.right));
+            ExecuteOnAnyKeyDown(_moveLeftKeys, () => _field.TryMovePiece(Vector2Int.left));
+            ExecuteOnAnyKeyDown(_moveRightKeys, () => _field.TryMovePiece(Vector2Int.right));
         }
 
         private void ExecuteOnAnyKeyDown(KeyCode[] keys, Action action)

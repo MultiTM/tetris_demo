@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Zenject;
 
@@ -13,6 +12,8 @@ namespace _Project._Scripts.Core
         private FieldRenderer _renderer;
         private PieceGenerator _pieceGenerator;
 
+        private Vector2Int PieceSpawnPoint => new Vector2Int(Mathf.RoundToInt(_width / 2f), _height - 3); // top center
+
         [Inject]
         private void Construct(FieldSettings fieldSettings, FieldRenderer renderer, PieceGenerator pieceGenerator)
         {
@@ -26,25 +27,84 @@ namespace _Project._Scripts.Core
         {
             InitCells();
             _renderer.Init(_width, _height);
+            
             RequestActivePiece();
         }
 
         public void SetActivePiece(Tetramino piece)
         {
             _activePiece = piece;
-            _activePiece.SetPosition(new Vector2Int(Mathf.RoundToInt(_width / 2f), _height - 2));
-            Debug.Log(_activePiece.Position);
-            Render();
+            _activePiece.SetPosition(PieceSpawnPoint);
         }
 
         public void Tick()
         {
-            MovePiece(Vector2Int.down);
-            CheckForFreezePiece();
+            TryMovePiece(Vector2Int.down);
+            TryFreezePiece();
+            TryRemoveLines();
             Render();
         }
 
-        private void CheckForFreezePiece()
+        private void TryRemoveLines()
+        {
+            var fullLineIndex = GetFullLineIndex();
+            if (fullLineIndex == -1)
+            {
+                return;
+            }
+
+            while (fullLineIndex != -1)
+            {
+                RemoveFullLine(fullLineIndex);
+                MoveFieldDown(fullLineIndex);
+                
+                fullLineIndex = GetFullLineIndex();
+            }
+        }
+
+        private void RemoveFullLine(int fullLineIndex)
+        {
+            for (int x = 0; x < _width; x++)
+            {
+                _cells[x, fullLineIndex] = FieldCellState.Empty;
+            }
+        }
+
+        private void MoveFieldDown(int fullLineIndex)
+        {
+            for (int y = fullLineIndex; y < _height - 1; y++)
+            {
+                for (int x = 0; x < _width; x++)
+                {
+                    _cells[x, y] = _cells[x, y + 1];
+                }
+            }
+        }
+
+        private int GetFullLineIndex()
+        {
+            for (int y = 0; y < _height; y++)
+            {
+                var isLineFull = true;
+                for (int x = 0; x < _width; x++)
+                {
+                    if (_cells[x, y] != FieldCellState.Frozen)
+                    {
+                        isLineFull = false;
+                        break;
+                    }
+                }
+
+                if (isLineFull)
+                {
+                    return y;
+                }
+            }
+            
+            return -1;
+        }
+
+        private void TryFreezePiece()
         {
             foreach (var pieceCell in _activePiece.Cells)
             {
@@ -88,7 +148,7 @@ namespace _Project._Scripts.Core
             Render();
         }
 
-        public void MovePiece(Vector2Int direction)
+        public void TryMovePiece(Vector2Int direction)
         {
             if (!CanMove(direction))
             {
