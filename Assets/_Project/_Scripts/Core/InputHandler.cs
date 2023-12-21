@@ -9,6 +9,7 @@ namespace _Project._Scripts.Core
         [SerializeField] private KeyCode[] _moveLeftKeys;
         [SerializeField] private KeyCode[] _moveRightKeys;
         [SerializeField] private KeyCode[] _rotateKeys;
+        [SerializeField] private KeyCode[] _dropKeys;
 
         private Field _field;
 
@@ -23,6 +24,7 @@ namespace _Project._Scripts.Core
             ExecuteOnAnyKeyDown(_rotateKeys, () => _field.TryRotatePiece());
             ExecuteOnAnyKeyDown(_moveLeftKeys, () => _field.TryMovePiece(Vector2Int.left));
             ExecuteOnAnyKeyDown(_moveRightKeys, () => _field.TryMovePiece(Vector2Int.right));
+            ExecuteOnAnyKeyDown(_dropKeys, () => _field.DropPiece());
         }
 
         private void ExecuteOnAnyKeyDown(KeyCode[] keys, Action action)

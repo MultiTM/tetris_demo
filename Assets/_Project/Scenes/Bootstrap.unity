@@ -238,6 +238,7 @@ MonoBehaviour:
   _moveLeftKeys: 61000000
   _moveRightKeys: 64000000
   _rotateKeys: 77000000
+  _dropKeys: 73000000
 --- !u!4 &372529021
 Transform:
   m_ObjectHideFlags: 0

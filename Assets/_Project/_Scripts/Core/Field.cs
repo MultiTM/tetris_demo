@@ -45,6 +45,35 @@ namespace _Project._Scripts.Core
             TryRemoveLines();
             Render();
         }
+        
+        public void TryRotatePiece()
+        {
+            if (!CanRotate())
+            {
+                return;
+            }
+            _activePiece.Rotate();
+            Render();
+        }
+
+        public void TryMovePiece(Vector2Int direction)
+        {
+            if (!CanMove(direction))
+            {
+                return;
+            }
+            
+            _activePiece.SetPosition(_activePiece.Position + direction);
+            Render();
+        }
+
+        public void DropPiece()
+        {
+            while (CanMove(Vector2Int.down))
+            {
+                TryMovePiece(Vector2Int.down);
+            }
+        }
 
         private void TryRemoveLines()
         {
@@ -140,27 +169,6 @@ namespace _Project._Scripts.Core
         private void RequestActivePiece()
         {
             SetActivePiece(_pieceGenerator.GetRandomPiece());
-        }
-
-        public void TryRotatePiece()
-        {
-            if (!CanRotate())
-            {
-                return;
-            }
-            _activePiece.Rotate();
-            Render();
-        }
-
-        public void TryMovePiece(Vector2Int direction)
-        {
-            if (!CanMove(direction))
-            {
-                return;
-            }
-            
-            _activePiece.SetPosition(_activePiece.Position + direction);
-            Render();
         }
 
         private bool CanRotate()
