@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace _Project._Scripts.Utils
 {
-    public class TetraminoRotator
+    public static class TetraminoRotator
     {
         private static float Sin = Mathf.Sin(Mathf.PI / 2f);
         private static float Cos = Mathf.Cos(Mathf.PI / 2f);

@@ -16,7 +16,8 @@ namespace _Project._Scripts.Infrastructure
             Container.Bind<Field>().FromInstance(_field).AsSingle();
             Container.Bind<FieldSettings>().FromScriptableObject(_fieldSettings).AsSingle();
             Container.Bind<TetraminoConfig>().FromScriptableObject(_tetraminoConfig).AsSingle();
-            Container.BindFactory<FieldCell, FieldCell.Factory>().FromComponentInNewPrefab(_fieldCell).AsSingle();
+            Container.BindFactory<FieldCell, FieldCell.Factory>().FromComponentInNewPrefab(_fieldCell);
+            Container.BindFactory<TetraminoType, Tetramino, Tetramino.Factory>();
         }
     }
 }
