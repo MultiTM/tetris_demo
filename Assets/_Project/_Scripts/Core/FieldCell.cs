@@ -9,8 +9,6 @@ namespace _Project._Scripts.Core
         [SerializeField] private SpriteRenderer _renderer;
         [SerializeField] private FieldCellState _state;
 
-        public FieldCellState State => _state;
-
         public void SetState(FieldCellState state)
         {
             _state = state;
@@ -27,7 +25,7 @@ namespace _Project._Scripts.Core
             switch (_state)
             {
                 case FieldCellState.Empty:
-                    _renderer.color = new Color(1f, 1f, 1f, 0.5f);
+                    _renderer.color = new Color(1f, 1f, 1f, 0.35f);
                     break;
                 case FieldCellState.Moving:
                 case FieldCellState.Frozen:

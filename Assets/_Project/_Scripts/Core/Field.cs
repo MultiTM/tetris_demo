@@ -1,3 +1,4 @@
+using System.Linq;
 using _Project._Scripts.Utils;
 using UnityEngine;
 using Zenject;
@@ -13,7 +14,7 @@ namespace _Project._Scripts.Core
         private FieldRenderer _renderer;
         private PieceGenerator _pieceGenerator;
 
-        private Vector2Int PieceSpawnPoint => new Vector2Int(Mathf.RoundToInt(_width / 2f), _height - 3); // top center
+        private Vector2Int PieceSpawnPoint => new Vector2Int(Mathf.RoundToInt(_width / 2f), _height - 1); // top center
 
         [Inject]
         private void Construct(FieldSettings fieldSettings, FieldRenderer renderer, PieceGenerator pieceGenerator)
@@ -32,10 +33,17 @@ namespace _Project._Scripts.Core
             RequestActivePiece();
         }
 
-        public void SetActivePiece(Tetramino piece)
+        public void SpawnPiece(Tetramino piece)
         {
+            piece.SetPosition(PieceSpawnPoint);
+            var cells = piece.Cells.Select(x => x + piece.Position).ToArray();
+            if (!CanBePlaced(cells))
+            {
+                Debug.Log("Game over");
+                return;
+            }
+            
             _activePiece = piece;
-            _activePiece.SetPosition(PieceSpawnPoint);
         }
 
         public void Tick()
@@ -168,7 +176,7 @@ namespace _Project._Scripts.Core
 
         private void RequestActivePiece()
         {
-            SetActivePiece(_pieceGenerator.GetRandomPiece());
+            SpawnPiece(_pieceGenerator.GetRandomPiece());
         }
 
         private bool CanRotate()

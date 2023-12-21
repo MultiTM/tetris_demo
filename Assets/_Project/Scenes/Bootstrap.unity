@@ -235,10 +235,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d69ad18ce286450f9e1a625e73432d64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveLeftKeys: 61000000
-  _moveRightKeys: 64000000
-  _rotateKeys: 77000000
-  _dropKeys: 73000000
+  _moveLeftKeys: 6100000014010000
+  _moveRightKeys: 6400000013010000
+  _rotateKeys: 7700000011010000
+  _dropKeys: 7300000020000000
 --- !u!4 &372529021
 Transform:
   m_ObjectHideFlags: 0
