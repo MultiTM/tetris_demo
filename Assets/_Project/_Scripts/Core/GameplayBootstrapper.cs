@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using Zenject;
 
@@ -20,9 +21,6 @@ namespace _Project._Scripts.Core
         private void Start()
         {
             _field.Init();
-            var piece = new Tetramino(TetraminoType.L, _config);
-            piece.SetPosition(new Vector2Int(4, 15));
-            _field.SetActivePiece(piece);
             _fieldTicker.StartTick();
         }
     }

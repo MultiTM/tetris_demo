@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using _Project._Scripts.Utils;
 using UnityEngine;
@@ -13,10 +14,10 @@ namespace _Project._Scripts.Core
         public Vector2Int[] Cells => _cells;
         public Vector2Int Position => _position;
 
-        // TODO: move out config to factory
-        public Tetramino(TetraminoType type, TetraminoConfig config)
+        public Tetramino(Vector2Int[] cells)
         {
-            _cells = config.ConfigItems.First(x => x.Type == type).Cells;
+            _cells = new Vector2Int[cells.Length];
+            Array.Copy(cells, _cells, cells.Length); // To avoid copying of array reference
         }
 
         public void SetPosition(Vector2Int position)
@@ -29,6 +30,6 @@ namespace _Project._Scripts.Core
             _cells = TetraminoRotator.Rotate(_cells);
         }
 
-        public class Factory : PlaceholderFactory<TetraminoType, Tetramino> { }
+        public class Factory : PlaceholderFactory<Vector2Int[], Tetramino> { }
     }
 }

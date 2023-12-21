@@ -25,7 +25,7 @@ namespace _Project._Scripts.Core
         {
             while (_isRunning)
             {
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.5f);
                 _field.Tick();
             }
         }

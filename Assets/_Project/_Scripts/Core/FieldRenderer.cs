@@ -10,7 +10,7 @@ namespace _Project._Scripts.Core
         private int _width;
         private int _height;
         private FieldCell.Factory _fieldCellFactory;
-        private FieldCell[] _cells;
+        private FieldCell[,] _cells;
         private Tetramino _activePiece;
 
         [Inject]
@@ -30,7 +30,7 @@ namespace _Project._Scripts.Core
         // To simplify solution we assume that each cell size in (1,1,1) to calculate offset
         private void CreateCells()
         {
-            _cells = new FieldCell[_width * _height];
+            _cells = new FieldCell[_width, _height];
             for (int y = 0; y < _height; y++)
             {
                 for (int x = 0; x < _width; x++)
@@ -40,7 +40,7 @@ namespace _Project._Scripts.Core
                     cell.transform.localPosition = new Vector3(x, y, 0);
                     cell.SetState(FieldCellState.Empty);
 
-                    _cells[x * _height + y] = cell;
+                    _cells[x, y] = cell;
                 }
             }
 
@@ -50,12 +50,15 @@ namespace _Project._Scripts.Core
             _cellRoot.localPosition = offset;
         }
 
-        public void Render(FieldCellState[] cellStates)
+        public void Render(FieldCellState[,] cellStates)
         {
-            for (int i = 0; i < cellStates.Length; i++)
+            for (int x = 0; x < _width; x++)
             {
-                var cellView = _cells[i];
-                cellView.SetState(cellStates[i]);
+                for (int y = 0; y < _height; y++)
+                {
+                    var cellView = _cells[x, y];
+                    cellView.SetState(cellStates[x, y]);
+                }
             }
         }
     }
