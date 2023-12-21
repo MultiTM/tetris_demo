@@ -155,6 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _field: {fileID: 1675723651}
   _fieldSettings: {fileID: 11400000, guid: aedbaa94531834277b1e02172afd57be, type: 2}
+  _tetraminoConfig: {fileID: 11400000, guid: 2e9812d13c6bd44d991ae195f35555f4, type: 2}
   _fieldCell: {fileID: 2363497732871658053, guid: 1dd20f1898b8b460c9c6f6179b908e06, type: 3}
 --- !u!114 &307889680
 MonoBehaviour:
@@ -332,8 +333,8 @@ Camera:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.9433962, g: 0.916103, b: 0.6363475, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

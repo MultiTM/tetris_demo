@@ -8,12 +8,14 @@ namespace _Project._Scripts.Infrastructure
     {
         [SerializeField] private Field _field;
         [SerializeField] private FieldSettings _fieldSettings;
+        [SerializeField] private TetraminoConfig _tetraminoConfig;
         [SerializeField] private FieldCell _fieldCell;
         
         public override void InstallBindings()
         {
             Container.Bind<Field>().FromInstance(_field).AsSingle();
             Container.Bind<FieldSettings>().FromScriptableObject(_fieldSettings).AsSingle();
+            Container.Bind<TetraminoConfig>().FromScriptableObject(_tetraminoConfig).AsSingle();
             Container.BindFactory<FieldCell, FieldCell.Factory>().FromComponentInNewPrefab(_fieldCell).AsSingle();
         }
     }
