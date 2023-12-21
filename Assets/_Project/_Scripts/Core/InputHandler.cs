@@ -20,7 +20,7 @@ namespace _Project._Scripts.Core
 
         private void Update()
         {
-            ExecuteOnAnyKeyDown(_rotateKeys, () => _field.RotatePiece());
+            ExecuteOnAnyKeyDown(_rotateKeys, () => _field.TryRotatePiece());
             ExecuteOnAnyKeyDown(_moveLeftKeys, () => _field.TryMovePiece(Vector2Int.left));
             ExecuteOnAnyKeyDown(_moveRightKeys, () => _field.TryMovePiece(Vector2Int.right));
         }

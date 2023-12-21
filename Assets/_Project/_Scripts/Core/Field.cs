@@ -1,3 +1,4 @@
+using _Project._Scripts.Utils;
 using UnityEngine;
 using Zenject;
 
@@ -141,9 +142,12 @@ namespace _Project._Scripts.Core
             SetActivePiece(_pieceGenerator.GetRandomPiece());
         }
 
-        public void RotatePiece()
+        public void TryRotatePiece()
         {
-            // TODO: check is rotation possible
+            if (!CanRotate())
+            {
+                return;
+            }
             _activePiece.Rotate();
             Render();
         }
@@ -159,11 +163,38 @@ namespace _Project._Scripts.Core
             Render();
         }
 
+        private bool CanRotate()
+        {
+            var cellPositions = new Vector2Int[_activePiece.Cells.Length];
+            for (int i = 0; i < _activePiece.Cells.Length; i++)
+            {
+                cellPositions[i] = _activePiece.Cells[i];
+            }
+
+            cellPositions = TetraminoRotator.Rotate(cellPositions);
+            for (int i = 0; i < _activePiece.Cells.Length; i++)
+            {
+                cellPositions[i] += _activePiece.Position;
+            }
+
+            return CanBePlaced(cellPositions);
+        }
+
         private bool CanMove(Vector2Int direction)
         {
-            foreach (var pieceCell in _activePiece.Cells)
+            var cellPositions = new Vector2Int[_activePiece.Cells.Length];
+            for (int i = 0; i < _activePiece.Cells.Length; i++)
             {
-                var cellPosition = pieceCell + _activePiece.Position + direction;
+                cellPositions[i] = _activePiece.Position + _activePiece.Cells[i] + direction;
+            }
+
+            return CanBePlaced(cellPositions);
+        }
+
+        private bool CanBePlaced(Vector2Int[] cellPositions)
+        {
+            foreach (var cellPosition in cellPositions)
+            {
                 if (cellPosition.x < 0 || cellPosition.y < 0 || cellPosition.x >= _width || cellPosition.y >= _height)
                 {
                     return false;
