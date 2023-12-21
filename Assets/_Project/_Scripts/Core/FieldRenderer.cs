@@ -44,7 +44,9 @@ namespace _Project._Scripts.Core
                 }
             }
 
-            var offset = new Vector3(_width / 2f, _height / 2f, 0f) * -1f + new Vector3(0.5f, 0.5f, 0f); // move cell root to center
+            // move cell root to center
+            var offset = new Vector3(_width / 2f, _height / 2f, 0f) * -1f
+                         + new Vector3(0.5f, 0.5f, 0f);
             _cellRoot.localPosition = offset;
         }
 
