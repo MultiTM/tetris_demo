@@ -7,12 +7,14 @@ namespace _Project._Scripts.Core
     {
         private TetraminoConfig _config;
         private Field _field;
+        private FieldTicker _fieldTicker;
         
         [Inject]
-        private void Construct(Field field, TetraminoConfig config)
+        private void Construct(Field field, FieldTicker fieldTicker, TetraminoConfig config)
         {
             _config = config;
             _field = field;
+            _fieldTicker = fieldTicker;
         }
         
         private void Start()
@@ -21,6 +23,7 @@ namespace _Project._Scripts.Core
             var piece = new Tetramino(TetraminoType.L, _config);
             piece.SetPosition(new Vector2Int(4, 15));
             _field.SetActivePiece(piece);
+            _fieldTicker.StartTick();
         }
     }
 }

@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fieldRenderer: {fileID: 1675723653}
+  _fieldTicker: {fileID: 1675723654}
   _inputHandler: {fileID: 372529020}
   _fieldSettings: {fileID: 11400000, guid: aedbaa94531834277b1e02172afd57be, type: 2}
   _tetraminoConfig: {fileID: 11400000, guid: 2e9812d13c6bd44d991ae195f35555f4, type: 2}
@@ -479,6 +480,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1675723652}
   - component: {fileID: 1675723653}
+  - component: {fileID: 1675723654}
   m_Layer: 0
   m_Name: Field
   m_TagString: Untagged
@@ -515,6 +517,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cellRoot: {fileID: 933898595}
+--- !u!114 &1675723654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675723650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d11534d231d4fffb991ad4b93d62417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1848373392
 GameObject:
   m_ObjectHideFlags: 0
