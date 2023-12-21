@@ -13,6 +13,7 @@ namespace _Project._Scripts.Core
         public Vector2Int[] Cells => _cells;
         public Vector2Int Position => _position;
 
+        // TODO: move out config to factory
         public Tetramino(TetraminoType type, TetraminoConfig config)
         {
             _cells = config.ConfigItems.First(x => x.Type == type).Cells;
@@ -28,9 +29,6 @@ namespace _Project._Scripts.Core
             _cells = TetraminoRotator.Rotate(_cells);
         }
 
-        public class Factory : PlaceholderFactory<TetraminoType, Tetramino>
-        {
-            
-        }
+        public class Factory : PlaceholderFactory<TetraminoType, Tetramino> { }
     }
 }
