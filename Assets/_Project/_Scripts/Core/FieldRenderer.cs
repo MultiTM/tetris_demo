@@ -5,6 +5,8 @@ namespace _Project._Scripts.Core
 {
     public class FieldRenderer : MonoBehaviour
     {
+        [SerializeField] private Transform _cellRoot;
+        
         private int _width;
         private int _height;
         private FieldCell.Factory _fieldCellFactory;
@@ -25,6 +27,7 @@ namespace _Project._Scripts.Core
             CreateCells();
         }
         
+        // To simplify solution we assume that each cell size in (1,1,1) to calculate offset
         private void CreateCells()
         {
             _cells = new FieldCell[_width * _height];
@@ -33,13 +36,16 @@ namespace _Project._Scripts.Core
                 for (int x = 0; x < _width; x++)
                 {
                     var cell = _fieldCellFactory.Create();
-                    cell.transform.SetParent(transform);
+                    cell.transform.SetParent(_cellRoot);
                     cell.transform.localPosition = new Vector3(x, y, 0);
                     cell.SetState(FieldCellState.Empty);
 
                     _cells[x * _height + y] = cell;
                 }
             }
+
+            var offset = new Vector3(_width / 2f, _height / 2f, 0f) * -1f + new Vector3(0.5f, 0.5f, 0f); // move cell root to center
+            _cellRoot.localPosition = offset;
         }
 
         public void Render(FieldCellState[] cellStates)
