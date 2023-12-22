@@ -1,5 +1,6 @@
 using System;
 using _Project._Scripts.Core;
+using _Project._Scripts.Core.Input;
 using _Project._Scripts.UI;
 using UnityEngine;
 using Zenject;
@@ -15,12 +16,14 @@ namespace _Project._Scripts.Infrastructure
         private UIManager _uiManager;
         private DifficultyManager _difficultyManager;
         private ScoreCounter _scoreCounter;
+        private InputSwitcher _inputSwitcher;
 
         public Field Field => _field;
         public FieldTicker FieldTicker => _fieldTicker;
         public UIManager UIManager => _uiManager;
         public ScoreCounter ScoreCounter => _scoreCounter;
         public DifficultyManager DifficultyManager => _difficultyManager;
+        public InputSwitcher InputSwitcher => _inputSwitcher;
 
         [Inject]
         private void Construct(Game game,
@@ -29,7 +32,8 @@ namespace _Project._Scripts.Infrastructure
             FieldTicker fieldTicker,
             UIManager uiManager,
             DifficultyManager difficultyManager,
-            ScoreCounter scoreCounter)
+            ScoreCounter scoreCounter,
+            InputSwitcher inputSwitcher)
         {
             _provider = provider;
             _field = field;
@@ -38,6 +42,7 @@ namespace _Project._Scripts.Infrastructure
             _uiManager = uiManager;
             _difficultyManager = difficultyManager;
             _scoreCounter = scoreCounter;
+            _inputSwitcher = inputSwitcher;
         }
 
         public void Initialize()

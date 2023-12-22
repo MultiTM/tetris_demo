@@ -1,3 +1,4 @@
+using _Project._Scripts.Core.Input;
 using _Project._Scripts.UI;
 
 namespace _Project._Scripts.Infrastructure
@@ -13,12 +14,8 @@ namespace _Project._Scripts.Infrastructure
         
         public override void Enter()
         {
+            _provider.LevelFlow.InputSwitcher.SwitchInputScheme(InputState.GameOver);
             _provider.LevelFlow.UIManager.ShowWindow<GameOverWindow>();
-        }
-
-        public override void Exit()
-        {
-            _provider.LevelFlow.UIManager.HideWindow<GameOverWindow>();
         }
     }
 }

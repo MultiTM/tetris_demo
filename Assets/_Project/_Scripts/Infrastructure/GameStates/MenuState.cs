@@ -1,3 +1,4 @@
+using _Project._Scripts.Core.Input;
 using _Project._Scripts.UI;
 
 namespace _Project._Scripts.Infrastructure
@@ -13,9 +14,7 @@ namespace _Project._Scripts.Infrastructure
         
         public override void Enter()
         {
-            _provider.LevelFlow.Field.Init();
-            _provider.LevelFlow.ScoreCounter.Init();
-            _provider.LevelFlow.DifficultyManager.UpdateDifficultyLevel();
+            _provider.LevelFlow.InputSwitcher.SwitchInputScheme(InputState.Menu);
             _provider.LevelFlow.UIManager.ShowWindow<MenuWindow>();
         }
     }

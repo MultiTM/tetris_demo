@@ -6,7 +6,7 @@ namespace _Project._Scripts.UI
     {
         public void StartGame()
         {
-            _game.EnterState<GameplayState>();
+            _game.EnterState<InitGameplayState>();
         }
     }
 }

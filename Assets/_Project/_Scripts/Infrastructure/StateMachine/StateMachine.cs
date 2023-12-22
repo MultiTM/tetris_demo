@@ -9,6 +9,8 @@ namespace _Project._Scripts.Infrastructure
         protected List<T> _states;
         protected T _currentState;
 
+        public T CurrentState => _currentState;
+
         public StateMachine(List<T> states)
         {
             _states = states;

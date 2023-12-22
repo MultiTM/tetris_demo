@@ -1,7 +1,9 @@
 using _Project._Scripts.Core;
+using _Project._Scripts.Core.Input;
 using _Project._Scripts.Settings;
 using _Project._Scripts.UI;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace _Project._Scripts.Infrastructure
@@ -10,7 +12,10 @@ namespace _Project._Scripts.Infrastructure
     {
         [SerializeField] private FieldRenderer _fieldRenderer;
         [SerializeField] private FieldTicker _fieldTicker;
-        [SerializeField] private InputHandler _inputHandler;
+        [SerializeField] private GameplayInputHandler _gameplayInputHandler;
+        [SerializeField] private MenuInputHandler _menuInputHandler;
+        [SerializeField] private GameOverInputHandler _gameOverInputHandler;
+        [SerializeField] private PauseInputHandler _pauseInputHandler;
         [SerializeField] private FieldSettings _fieldSettings;
         [SerializeField] private TetraminoConfig _tetraminoConfig;
         [SerializeField] private ScoreConfig _scoreConfig;
@@ -21,6 +26,7 @@ namespace _Project._Scripts.Infrastructure
         [SerializeField] private UIManager _uiManager;
         [SerializeField] private HUDWindow _hudWindow;
         [SerializeField] private MenuWindow _menuWindow;
+        [SerializeField] private PauseWindow _pauseWindow;
         [SerializeField] private GameOverWindow _gameOverWindow;
         
         public override void InstallBindings()
@@ -30,6 +36,16 @@ namespace _Project._Scripts.Infrastructure
             InstallConfigs();
             InstallFactories();
             InstallUI();
+            InstallInput();
+        }
+
+        private void InstallInput()
+        {
+            Container.Bind<InputSwitcher>().AsSingle();
+            Container.BindInterfacesAndSelfTo<MenuInputHandler>().FromInstance(_menuInputHandler).AsSingle();
+            Container.BindInterfacesAndSelfTo<GameplayInputHandler>().FromInstance(_gameplayInputHandler).AsSingle();
+            Container.BindInterfacesAndSelfTo<GameOverInputHandler>().FromInstance(_gameOverInputHandler).AsSingle();
+            Container.BindInterfacesAndSelfTo<PauseInputHandler>().FromInstance(_pauseInputHandler).AsSingle();
         }
 
         private void InstallUI()
@@ -38,6 +54,7 @@ namespace _Project._Scripts.Infrastructure
             Container.BindInterfacesAndSelfTo<HUDWindow>().FromInstance(_hudWindow).AsSingle();
             Container.BindInterfacesAndSelfTo<MenuWindow>().FromInstance(_menuWindow).AsSingle();
             Container.BindInterfacesAndSelfTo<GameOverWindow>().FromInstance(_gameOverWindow).AsSingle();
+            Container.BindInterfacesAndSelfTo<PauseWindow>().FromInstance(_pauseWindow).AsSingle();
         }
 
         private void InstallCore()
@@ -52,7 +69,6 @@ namespace _Project._Scripts.Infrastructure
         private void InstallInstances()
         {
             Container.Bind<NextPieceRenderer>().FromInstance(_nextPieceRenderer).AsSingle();
-            Container.Bind<InputHandler>().FromInstance(_inputHandler).AsSingle();
             Container.Bind<FieldRenderer>().FromInstance(_fieldRenderer).AsSingle();
             Container.Bind<FieldTicker>().FromInstance(_fieldTicker).AsSingle();
             Container.BindInterfacesAndSelfTo<LevelFlow>().FromInstance(levelFlow).AsSingle();

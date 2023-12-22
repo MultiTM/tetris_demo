@@ -44,25 +44,6 @@ namespace _Project._Scripts.UI
             targetWindow.Show();
         }
 
-        public void HideWindow<T>() where T : IUIWindow
-        {
-            var targetWindow = _windows.FirstOrDefault(x => x.GetType() == typeof(T));
-
-            if (targetWindow == null)
-            {
-                Debug.LogWarning("Trying to open non-existent window");
-                return;
-            }
-            
-            targetWindow.Hide();
-        }
-
-        public void ResetDataModel()
-        {
-            _dataModel = new UIDataModel();
-            OnModelChanged?.Invoke(_dataModel);
-        }
-
         private void HideAllWindows()
         {
             foreach (var window in _windows)
