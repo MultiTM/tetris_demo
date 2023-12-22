@@ -28,6 +28,7 @@ namespace _Project._Scripts.Core
         public void Init()
         {
             InitCells();
+            _pieceQueue.Init();
             _renderer.Init(_width, _height);
             
             RequestActivePiece();

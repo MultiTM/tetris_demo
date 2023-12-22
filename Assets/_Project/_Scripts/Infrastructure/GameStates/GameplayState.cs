@@ -1,17 +1,18 @@
-using UnityEngine;
-
 namespace _Project._Scripts.Infrastructure
 {
     public class GameplayState : GameStateBase
     {
+        private LevelProgressWatcherProvider _provider;
+
+        public GameplayState(LevelProgressWatcherProvider provider)
+        {
+            _provider = provider;
+        }
+        
         public override void Enter()
         {
-            Debug.Log("Enter gameplay state");
-        }
-
-        public override void Exit()
-        {
-            Debug.Log("Exit gameplay state");
+            _provider.LevelProgressWatcher.Field.Init();
+            _provider.LevelProgressWatcher.FieldTicker.StartTick();
         }
     }
 }

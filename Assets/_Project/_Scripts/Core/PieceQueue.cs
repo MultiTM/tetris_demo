@@ -14,6 +14,10 @@ namespace _Project._Scripts.Core
         {
             _pieceGenerator = pieceGenerator;
             _nextPieceRenderer = nextPieceRenderer;
+        }
+
+        public void Init()
+        {
             _nextPieceRenderer.Init();
         }
 

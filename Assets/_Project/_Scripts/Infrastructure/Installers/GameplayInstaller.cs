@@ -13,6 +13,7 @@ namespace _Project._Scripts.Infrastructure
         [SerializeField] private TetraminoConfig _tetraminoConfig;
         [SerializeField] private FieldCell _fieldCell;
         [SerializeField] private NextPieceRenderer _nextPieceRenderer;
+        [SerializeField] private LevelProgressWatcher _levelProgressWatcher;
         
         public override void InstallBindings()
         {
@@ -35,6 +36,7 @@ namespace _Project._Scripts.Infrastructure
             Container.Bind<InputHandler>().FromInstance(_inputHandler).AsSingle();
             Container.Bind<FieldRenderer>().FromInstance(_fieldRenderer).AsSingle();
             Container.Bind<FieldTicker>().FromInstance(_fieldTicker).AsSingle();
+            Container.BindInterfacesAndSelfTo<LevelProgressWatcher>().FromInstance(_levelProgressWatcher).AsSingle();
         }
 
         private void InstallFactories()

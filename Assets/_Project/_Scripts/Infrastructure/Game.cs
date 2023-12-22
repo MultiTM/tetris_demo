@@ -6,7 +6,16 @@ namespace _Project._Scripts.Infrastructure
     {
         public Game(List<IGameState> states) : base(states)
         {
+            InitStates();
             EnterState<BootstrapState>();
+        }
+        
+        private void InitStates()
+        {
+            foreach (var state in _states)
+            {
+                state.Init(this);
+            }
         }
     }
 }
