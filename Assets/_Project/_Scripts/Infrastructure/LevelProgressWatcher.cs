@@ -26,7 +26,14 @@ namespace _Project._Scripts.Infrastructure
         public void Initialize()
         {
             _provider.InitForLevel(this);
+            _field.OnGameOver += OnGameOver;
+            
             _game.EnterState<MenuState>();
+        }
+
+        private void OnGameOver()
+        {
+            _game.EnterState<GameOverState>();
         }
     }
 }

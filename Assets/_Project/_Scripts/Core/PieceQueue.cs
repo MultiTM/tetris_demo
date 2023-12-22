@@ -18,12 +18,13 @@ namespace _Project._Scripts.Core
 
         public void Init()
         {
+            _pieces.Clear();
             _nextPieceRenderer.Init();
         }
 
         public Tetramino GetPiece()
         {
-            if (_pieces.Count == 0)
+            if (_pieces.Count < QueueSize)
             {
                 RequestRandomPiece();
             }

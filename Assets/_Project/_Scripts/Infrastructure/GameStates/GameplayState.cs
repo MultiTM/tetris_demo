@@ -11,8 +11,12 @@ namespace _Project._Scripts.Infrastructure
         
         public override void Enter()
         {
-            _provider.LevelProgressWatcher.Field.Init();
             _provider.LevelProgressWatcher.FieldTicker.StartTick();
+        }
+
+        public override void Exit()
+        {
+            _provider.LevelProgressWatcher.FieldTicker.StopTick();
         }
     }
 }

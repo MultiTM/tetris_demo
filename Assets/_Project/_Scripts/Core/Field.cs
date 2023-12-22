@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using _Project._Scripts.Utils;
 using UnityEngine;
@@ -15,6 +16,8 @@ namespace _Project._Scripts.Core
         private PieceQueue _pieceQueue;
 
         private Vector2Int PieceSpawnPoint => new Vector2Int(Mathf.RoundToInt(_width / 2f), _height - 1); // top center
+        
+        public event Action OnGameOver;
 
         [Inject]
         private void Construct(FieldSettings fieldSettings, FieldRenderer renderer, PieceQueue pieceQueue)
@@ -40,7 +43,7 @@ namespace _Project._Scripts.Core
             var cells = piece.Cells.Select(x => x + piece.Position).ToArray();
             if (!CanBePlaced(cells))
             {
-                Debug.Log("Game over");
+                OnGameOver?.Invoke();
                 return;
             }
             
@@ -269,14 +272,7 @@ namespace _Project._Scripts.Core
 
         private void InitCells()
         {
-            _cells = new FieldCellState[_width, _height];
-            for (int x = 0; x < _width; x++)
-            {
-                for (int y = 0; y < _height; y++)
-                {
-                    _cells[x, y] = FieldCellState.Empty;
-                }
-            }
+            _cells = new FieldCellState[_width, _height]; // Empty is default value for enum
         }
     }
 }
