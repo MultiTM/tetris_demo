@@ -12,17 +12,17 @@ namespace _Project._Scripts.Core
         private FieldCellState[,] _cells;
         private Tetramino _activePiece;
         private FieldRenderer _renderer;
-        private PieceGenerator _pieceGenerator;
+        private PieceQueue _pieceQueue;
 
         private Vector2Int PieceSpawnPoint => new Vector2Int(Mathf.RoundToInt(_width / 2f), _height - 1); // top center
 
         [Inject]
-        private void Construct(FieldSettings fieldSettings, FieldRenderer renderer, PieceGenerator pieceGenerator)
+        private void Construct(FieldSettings fieldSettings, FieldRenderer renderer, PieceQueue pieceQueue)
         {
             _width = fieldSettings.Width;
             _height = fieldSettings.Height;
             _renderer = renderer;
-            _pieceGenerator = pieceGenerator;
+            _pieceQueue = pieceQueue;
         }
 
         public void Init()
@@ -176,7 +176,7 @@ namespace _Project._Scripts.Core
 
         private void RequestActivePiece()
         {
-            SpawnPiece(_pieceGenerator.GetRandomPiece());
+            SpawnPiece(_pieceQueue.GetPiece());
         }
 
         private bool CanRotate()

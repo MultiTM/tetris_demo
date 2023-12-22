@@ -12,11 +12,14 @@ namespace _Project._Scripts.Infrastructure
         [SerializeField] private FieldSettings _fieldSettings;
         [SerializeField] private TetraminoConfig _tetraminoConfig;
         [SerializeField] private FieldCell _fieldCell;
+        [SerializeField] private NextPieceRenderer _nextPieceRenderer;
         
         public override void InstallBindings()
         {
             Container.Bind<Field>().AsSingle();
             Container.Bind<PieceGenerator>().AsSingle();
+            Container.Bind<PieceQueue>().AsSingle();
+            Container.Bind<NextPieceRenderer>().FromInstance(_nextPieceRenderer).AsSingle();
             Container.Bind<InputHandler>().FromInstance(_inputHandler).AsSingle();
             Container.Bind<FieldRenderer>().FromInstance(_fieldRenderer).AsSingle();
             Container.Bind<FieldTicker>().FromInstance(_fieldTicker).AsSingle();
