@@ -31,7 +31,7 @@ namespace _Project._Scripts.Infrastructure
 
         private void InstallUI()
         {
-            Container.Bind<UIManager>().FromInstance(_uiManager).AsSingle();
+            Container.BindInterfacesAndSelfTo<UIManager>().FromInstance(_uiManager).AsSingle();
             Container.BindInterfacesAndSelfTo<HUDWindow>().FromInstance(_hudWindow).AsSingle();
             Container.BindInterfacesAndSelfTo<MenuWindow>().FromInstance(_menuWindow).AsSingle();
             Container.BindInterfacesAndSelfTo<GameOverWindow>().FromInstance(_gameOverWindow).AsSingle();
@@ -39,9 +39,10 @@ namespace _Project._Scripts.Infrastructure
 
         private void InstallCore()
         {
-            Container.Bind<Field>().AsSingle();
+            Container.BindInterfacesAndSelfTo<Field>().AsSingle();
             Container.Bind<PieceGenerator>().AsSingle();
             Container.Bind<PieceQueue>().AsSingle();
+            Container.Bind<ScoreCounter>().AsSingle();
         }
 
         private void InstallInstances()
