@@ -1,5 +1,6 @@
 using _Project._Scripts.Core.Input;
 using _Project._Scripts.UI;
+using UnityEngine;
 
 namespace _Project._Scripts.Infrastructure
 {
@@ -14,6 +15,7 @@ namespace _Project._Scripts.Infrastructure
         
         public override void Enter()
         {
+            Debug.Log("Gameplay");
             _provider.LevelFlow.InputSwitcher.SwitchInputScheme(InputState.Gameplay);
             _provider.LevelFlow.UIManager.ShowWindow<HUDWindow>();
             _provider.LevelFlow.FieldTicker.StartTick();

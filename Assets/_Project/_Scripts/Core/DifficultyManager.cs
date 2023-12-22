@@ -1,7 +1,6 @@
 using System.Linq;
 using _Project._Scripts.Settings;
 using _Project._Scripts.UI;
-using UnityEngine;
 
 namespace _Project._Scripts.Core
 {
@@ -26,8 +25,6 @@ namespace _Project._Scripts.Core
             var level = GetLevel(removedLines);
             _uiManager.SetLevelValue(level.Level);
             _fieldTicker.SetTickDuration(level.TickDuration);
-            
-            Debug.Log(level.Level);
         }
 
         private DifficultyConfigItem GetLevel(int removedLines)
@@ -44,7 +41,7 @@ namespace _Project._Scripts.Core
 
             if (level == null)
             {
-                level = _config.Levels.Last();
+                level = _config.Levels.First();
             }
 
             return level;

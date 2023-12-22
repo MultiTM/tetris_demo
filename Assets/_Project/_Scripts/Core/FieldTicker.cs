@@ -26,6 +26,7 @@ namespace _Project._Scripts.Core
         
         public void StartTick()
         {
+            _isRunning = true;
             StartCoroutine(TickRoutine());
         }
 
@@ -34,6 +35,7 @@ namespace _Project._Scripts.Core
             while (_isRunning)
             {
                 yield return _waiter;
+                Debug.Log("Tick");
                 _field.Tick();
             }
         }

@@ -22,6 +22,7 @@ public class ProjectInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<BootstrapState>().AsSingle();
         Container.BindInterfacesAndSelfTo<MenuState>().AsSingle();
         Container.BindInterfacesAndSelfTo<PauseState>().AsSingle();
+        Container.BindInterfacesAndSelfTo<InitGameplayState>().AsSingle();
         Container.BindInterfacesAndSelfTo<GameplayState>().AsSingle();
         Container.BindInterfacesAndSelfTo<GameOverState>().AsSingle();
     }

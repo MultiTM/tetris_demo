@@ -17,7 +17,7 @@ namespace _Project._Scripts.Core.Input
         
         protected override void Update()
         {
-            ExecuteOnAnyKeyDown(() => _game.EnterState<GameplayState>());
+            ExecuteOnAnyKeyDown(() => _game.EnterState<InitGameplayState>());
         }
     }
 }
