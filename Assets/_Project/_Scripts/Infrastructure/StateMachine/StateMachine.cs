@@ -22,6 +22,11 @@ namespace _Project._Scripts.Infrastructure
                 Debug.LogWarning("Trying to enter non-existent state");
                 return;
             }
+
+            if (targetState.GetType() == _currentState?.GetType())
+            {
+                return;
+            }
             
             if (_currentState != null)
             {

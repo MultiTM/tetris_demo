@@ -1,4 +1,5 @@
 using _Project._Scripts.Core;
+using _Project._Scripts.UI;
 using UnityEngine;
 using Zenject;
 
@@ -14,6 +15,9 @@ namespace _Project._Scripts.Infrastructure
         [SerializeField] private FieldCell _fieldCell;
         [SerializeField] private NextPieceRenderer _nextPieceRenderer;
         [SerializeField] private LevelProgressWatcher _levelProgressWatcher;
+        [SerializeField] private UIManager _uiManager;
+        [SerializeField] private HUDWindow _hudWindow;
+        [SerializeField] private MenuWindow _menuWindow;
         
         public override void InstallBindings()
         {
@@ -21,6 +25,14 @@ namespace _Project._Scripts.Infrastructure
             InstallInstances();
             InstallConfigs();
             InstallFactories();
+            InstallUI();
+        }
+
+        private void InstallUI()
+        {
+            Container.Bind<UIManager>().FromInstance(_uiManager).AsSingle();
+            Container.Bind<UIWindow>().To<HUDWindow>().FromInstance(_hudWindow).AsSingle();
+            Container.Bind<UIWindow>().To<MenuWindow>().FromInstance(_menuWindow).AsSingle();
         }
 
         private void InstallCore()

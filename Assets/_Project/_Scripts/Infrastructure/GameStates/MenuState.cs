@@ -1,4 +1,4 @@
-using UnityEngine;
+using _Project._Scripts.UI;
 
 namespace _Project._Scripts.Infrastructure
 {
@@ -14,9 +14,7 @@ namespace _Project._Scripts.Infrastructure
         public override void Enter()
         {
             _provider.LevelProgressWatcher.Field.Init();
-            
-            _stateMachine.EnterState<GameplayState>();
+            _provider.LevelProgressWatcher.UIManager.ShowWindow<MenuWindow>();
         }
-
     }
 }
