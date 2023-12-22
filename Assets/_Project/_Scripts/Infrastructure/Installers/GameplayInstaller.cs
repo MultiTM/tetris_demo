@@ -18,6 +18,7 @@ namespace _Project._Scripts.Infrastructure
         [SerializeField] private UIManager _uiManager;
         [SerializeField] private HUDWindow _hudWindow;
         [SerializeField] private MenuWindow _menuWindow;
+        [SerializeField] private GameOverWindow _gameOverWindow;
         
         public override void InstallBindings()
         {
@@ -31,8 +32,9 @@ namespace _Project._Scripts.Infrastructure
         private void InstallUI()
         {
             Container.Bind<UIManager>().FromInstance(_uiManager).AsSingle();
-            Container.Bind<UIWindow>().To<HUDWindow>().FromInstance(_hudWindow).AsSingle();
-            Container.Bind<UIWindow>().To<MenuWindow>().FromInstance(_menuWindow).AsSingle();
+            Container.BindInterfacesAndSelfTo<HUDWindow>().FromInstance(_hudWindow).AsSingle();
+            Container.BindInterfacesAndSelfTo<MenuWindow>().FromInstance(_menuWindow).AsSingle();
+            Container.BindInterfacesAndSelfTo<GameOverWindow>().FromInstance(_gameOverWindow).AsSingle();
         }
 
         private void InstallCore()

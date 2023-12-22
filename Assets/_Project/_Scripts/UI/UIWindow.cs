@@ -4,7 +4,7 @@ using Zenject;
 
 namespace _Project._Scripts.UI
 {
-    public abstract class UIWindow : MonoBehaviour
+    public abstract class UIWindow : MonoBehaviour, IUIWindow
     {
         protected Game _game;
 

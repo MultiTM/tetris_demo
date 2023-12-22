@@ -1,13 +1,21 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Zenject;
 
 namespace _Project._Scripts.UI
 {
     public class UIManager : MonoBehaviour
     {
-        private UIWindow[] _windows;
+        private IUIWindow[] _windows;
         
-        public void ShowWindow<T>() where T : UIWindow
+        [Inject]
+        private void Construct(List<IUIWindow> windows)
+        {
+            _windows = windows.ToArray();
+        }
+        
+        public void ShowWindow<T>() where T : IUIWindow
         {
             var targetWindow = _windows.FirstOrDefault(x => x.GetType() == typeof(T));
 
@@ -21,7 +29,7 @@ namespace _Project._Scripts.UI
             targetWindow.Show();
         }
 
-        public void HideWindow<T>() where T : UIWindow
+        public void HideWindow<T>() where T : IUIWindow
         {
             var targetWindow = _windows.FirstOrDefault(x => x.GetType() == typeof(T));
 

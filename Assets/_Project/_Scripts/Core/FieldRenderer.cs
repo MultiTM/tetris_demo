@@ -30,6 +30,7 @@ namespace _Project._Scripts.Core
         // To simplify solution we assume that each cell size in (1,1,1) to calculate offset
         private void CreateCells()
         {
+            RemoveCells();
             _cells = new FieldCell[_width, _height];
             for (int y = 0; y < _height; y++)
             {
@@ -48,6 +49,20 @@ namespace _Project._Scripts.Core
             var offset = new Vector3(_width / 2f, _height / 2f, 0f) * -1f
                          + new Vector3(0.5f, 0.5f, 0f);
             _cellRoot.localPosition = offset;
+        }
+
+        private void RemoveCells()
+        {
+            var childCount = _cellRoot.childCount;
+            if (childCount == 0)
+            {
+                return;
+            }
+            
+            for (int i = childCount - 1; i >= 0; i--)
+            {
+                Destroy(_cellRoot.GetChild(i).gameObject);
+            }
         }
 
         public void Render(FieldCellState[,] cellStates)

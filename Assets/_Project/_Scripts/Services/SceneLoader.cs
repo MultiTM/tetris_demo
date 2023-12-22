@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace _Project._Scripts.Services
@@ -14,7 +13,6 @@ namespace _Project._Scripts.Services
 
         private void LoadScene(string sceneName)
         {
-            Debug.Log("Loading scene: " + sceneName);
             SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
         }
     }
