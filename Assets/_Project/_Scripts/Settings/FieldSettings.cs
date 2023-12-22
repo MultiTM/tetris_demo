@@ -1,6 +1,7 @@
+using _Project._Scripts.Core;
 using UnityEngine;
 
-namespace _Project._Scripts.Core
+namespace _Project._Scripts.Settings
 {
     [CreateAssetMenu(fileName = "FieldSettings", menuName = "Game Settings/Field Settings", order = 0)]
     public class FieldSettings : ScriptableObject

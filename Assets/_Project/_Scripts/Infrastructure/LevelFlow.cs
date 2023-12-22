@@ -6,32 +6,47 @@ using Zenject;
 
 namespace _Project._Scripts.Infrastructure
 {
-    public class LevelProgressWatcher : MonoBehaviour, IInitializable, IDisposable
+    public class LevelFlow : MonoBehaviour, IInitializable, IDisposable
     {
         private Game _game;
-        private LevelProgressWatcherProvider _provider;
+        private LevelFlowProvider _provider;
         private Field _field;
         private FieldTicker _fieldTicker;
         private UIManager _uiManager;
+        private DifficultyManager _difficultyManager;
+        private ScoreCounter _scoreCounter;
 
         public Field Field => _field;
         public FieldTicker FieldTicker => _fieldTicker;
         public UIManager UIManager => _uiManager;
+        public ScoreCounter ScoreCounter => _scoreCounter;
+        public DifficultyManager DifficultyManager => _difficultyManager;
 
         [Inject]
-        private void Construct(Game game, LevelProgressWatcherProvider provider, Field field, FieldTicker fieldTicker, UIManager uiManager)
+        private void Construct(Game game,
+            LevelFlowProvider provider,
+            Field field,
+            FieldTicker fieldTicker,
+            UIManager uiManager,
+            DifficultyManager difficultyManager,
+            ScoreCounter scoreCounter)
         {
             _provider = provider;
             _field = field;
             _fieldTicker = fieldTicker;
             _game = game;
             _uiManager = uiManager;
+            _difficultyManager = difficultyManager;
+            _scoreCounter = scoreCounter;
         }
 
         public void Initialize()
         {
             _provider.InitForLevel(this);
             _field.OnGameOver += OnGameOver;
+            _field.OnPiecePlaced += _scoreCounter.PiecePlaced;
+            _field.OnLineRemoved += _scoreCounter.LineRemoved;
+            _field.OnLineRemoved += _difficultyManager.UpdateDifficultyLevel;
             
             _game.EnterState<MenuState>();
         }

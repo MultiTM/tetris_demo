@@ -4,23 +4,23 @@ namespace _Project._Scripts.Infrastructure
 {
     public class GameplayState : GameStateBase
     {
-        private LevelProgressWatcherProvider _provider;
+        private LevelFlowProvider _provider;
 
-        public GameplayState(LevelProgressWatcherProvider provider)
+        public GameplayState(LevelFlowProvider provider)
         {
             _provider = provider;
         }
         
         public override void Enter()
         {
-            _provider.LevelProgressWatcher.UIManager.ShowWindow<HUDWindow>();
-            _provider.LevelProgressWatcher.FieldTicker.StartTick();
+            _provider.LevelFlow.UIManager.ShowWindow<HUDWindow>();
+            _provider.LevelFlow.FieldTicker.StartTick();
         }
 
         public override void Exit()
         {
-            _provider.LevelProgressWatcher.UIManager.HideWindow<HUDWindow>();
-            _provider.LevelProgressWatcher.FieldTicker.StopTick();
+            _provider.LevelFlow.UIManager.HideWindow<HUDWindow>();
+            _provider.LevelFlow.FieldTicker.StopTick();
         }
     }
 }

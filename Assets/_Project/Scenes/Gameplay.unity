@@ -410,9 +410,11 @@ MonoBehaviour:
   _inputHandler: {fileID: 372529020}
   _fieldSettings: {fileID: 11400000, guid: aedbaa94531834277b1e02172afd57be, type: 2}
   _tetraminoConfig: {fileID: 11400000, guid: 2e9812d13c6bd44d991ae195f35555f4, type: 2}
+  _scoreConfig: {fileID: 11400000, guid: acdb877b52c954e179ed341a59550cbd, type: 2}
+  _difficultyConfig: {fileID: 11400000, guid: aafbeb9fe9553492799871cfdf80bb56, type: 2}
   _fieldCell: {fileID: 2363497732871658053, guid: 1dd20f1898b8b460c9c6f6179b908e06, type: 3}
   _nextPieceRenderer: {fileID: 1358105446}
-  _levelProgressWatcher: {fileID: 1857916498}
+  levelFlow: {fileID: 1857916498}
   _uiManager: {fileID: 841536517}
   _hudWindow: {fileID: 616313262}
   _menuWindow: {fileID: 572505405}
@@ -883,7 +885,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scoreLabel: {fileID: 1149473464}
   _levelLabel: {fileID: 718865295}
-  _linesLabel: {fileID: 440374877}
+  _linesRemovedLabel: {fileID: 440374877}
 --- !u!1 &692763877
 GameObject:
   m_ObjectHideFlags: 0
@@ -2287,7 +2289,7 @@ GameObject:
   - component: {fileID: 1857916499}
   - component: {fileID: 1857916498}
   m_Layer: 0
-  m_Name: LevelProgressWatcher
+  m_Name: LevelFlow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

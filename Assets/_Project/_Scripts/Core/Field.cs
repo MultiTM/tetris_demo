@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using _Project._Scripts.Settings;
 using _Project._Scripts.Utils;
 using UnityEngine;
 using Zenject;
@@ -14,20 +15,23 @@ namespace _Project._Scripts.Core
         private Tetramino _activePiece;
         private FieldRenderer _renderer;
         private PieceQueue _pieceQueue;
-        private ScoreCounter _scoreCounter;
 
         private Vector2Int PieceSpawnPoint => new Vector2Int(Mathf.RoundToInt(_width / 2f), _height - 1); // top center
         
         public event Action OnGameOver;
+        public event Action OnLineRemoved;
+        public event Action OnPiecePlaced;
 
         [Inject]
-        private void Construct(FieldSettings fieldSettings, FieldRenderer renderer, PieceQueue pieceQueue, ScoreCounter scoreCounter)
+        private void Construct(
+            FieldSettings fieldSettings,
+            FieldRenderer renderer,
+            PieceQueue pieceQueue)
         {
             _width = fieldSettings.Width;
             _height = fieldSettings.Height;
             _renderer = renderer;
             _pieceQueue = pieceQueue;
-            _scoreCounter = scoreCounter;
         }
 
         public void Init()
@@ -35,7 +39,6 @@ namespace _Project._Scripts.Core
             InitCells();
             _pieceQueue.Init();
             _renderer.Init(_width, _height);
-            _scoreCounter.Init();
             
             RequestActivePiece();
         }
@@ -113,8 +116,8 @@ namespace _Project._Scripts.Core
             {
                 _cells[x, fullLineIndex] = FieldCellState.Empty;
             }
-
-            _scoreCounter.LineRemoved();
+            
+            OnLineRemoved?.Invoke();
         }
 
         private void MoveFieldDown(int fullLineIndex)
@@ -180,7 +183,7 @@ namespace _Project._Scripts.Core
                 _cells[cellPosition.x, cellPosition.y] = FieldCellState.Frozen;
             }
             
-            _scoreCounter.PiecePlaced();
+            OnPiecePlaced?.Invoke();
 
             RequestActivePiece();
         }
@@ -285,6 +288,8 @@ namespace _Project._Scripts.Core
         public void Dispose()
         {
             OnGameOver = null;
+            OnPiecePlaced = null;
+            OnLineRemoved = null;
         }
     }
 }

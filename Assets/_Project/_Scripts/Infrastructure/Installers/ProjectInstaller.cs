@@ -12,7 +12,7 @@ public class ProjectInstaller : MonoInstaller
 
     private void InstallServices()
     {
-        Container.Bind<LevelProgressWatcherProvider>().AsSingle();
+        Container.Bind<LevelFlowProvider>().AsSingle();
         Container.Bind<SceneLoader>().AsSingle();
     }
 

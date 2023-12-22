@@ -1,4 +1,5 @@
 using _Project._Scripts.Core;
+using _Project._Scripts.Settings;
 using _Project._Scripts.UI;
 using UnityEngine;
 using Zenject;
@@ -12,9 +13,11 @@ namespace _Project._Scripts.Infrastructure
         [SerializeField] private InputHandler _inputHandler;
         [SerializeField] private FieldSettings _fieldSettings;
         [SerializeField] private TetraminoConfig _tetraminoConfig;
+        [SerializeField] private ScoreConfig _scoreConfig;
+        [SerializeField] private DifficultyConfig _difficultyConfig;
         [SerializeField] private FieldCell _fieldCell;
         [SerializeField] private NextPieceRenderer _nextPieceRenderer;
-        [SerializeField] private LevelProgressWatcher _levelProgressWatcher;
+        [SerializeField] private LevelFlow levelFlow;
         [SerializeField] private UIManager _uiManager;
         [SerializeField] private HUDWindow _hudWindow;
         [SerializeField] private MenuWindow _menuWindow;
@@ -43,6 +46,7 @@ namespace _Project._Scripts.Infrastructure
             Container.Bind<PieceGenerator>().AsSingle();
             Container.Bind<PieceQueue>().AsSingle();
             Container.Bind<ScoreCounter>().AsSingle();
+            Container.Bind<DifficultyManager>().AsSingle();
         }
 
         private void InstallInstances()
@@ -51,7 +55,7 @@ namespace _Project._Scripts.Infrastructure
             Container.Bind<InputHandler>().FromInstance(_inputHandler).AsSingle();
             Container.Bind<FieldRenderer>().FromInstance(_fieldRenderer).AsSingle();
             Container.Bind<FieldTicker>().FromInstance(_fieldTicker).AsSingle();
-            Container.BindInterfacesAndSelfTo<LevelProgressWatcher>().FromInstance(_levelProgressWatcher).AsSingle();
+            Container.BindInterfacesAndSelfTo<LevelFlow>().FromInstance(levelFlow).AsSingle();
         }
 
         private void InstallFactories()
@@ -64,6 +68,8 @@ namespace _Project._Scripts.Infrastructure
         {
             Container.Bind<FieldSettings>().FromScriptableObject(_fieldSettings).AsSingle();
             Container.Bind<TetraminoConfig>().FromScriptableObject(_tetraminoConfig).AsSingle();
+            Container.Bind<ScoreConfig>().FromScriptableObject(_scoreConfig).AsSingle();
+            Container.Bind<DifficultyConfig>().FromScriptableObject(_difficultyConfig).AsSingle();
         }
     }
 }

@@ -4,6 +4,6 @@ namespace _Project._Scripts.UI
     {
         public int Score { get; set; } = 0;
         public int Level { get; set; } = 0;
-        public int Lines { get; set; } = 0;
+        public int LinesRemoved { get; set; } = 0;
     }
 }

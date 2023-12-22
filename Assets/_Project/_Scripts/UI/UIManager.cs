@@ -57,6 +57,12 @@ namespace _Project._Scripts.UI
             targetWindow.Hide();
         }
 
+        public void ResetDataModel()
+        {
+            _dataModel = new UIDataModel();
+            OnModelChanged?.Invoke(_dataModel);
+        }
+
         private void HideAllWindows()
         {
             foreach (var window in _windows)
@@ -73,7 +79,7 @@ namespace _Project._Scripts.UI
         
         public void SetLinesValue(int lines)
         {
-            _dataModel.Lines = lines;
+            _dataModel.LinesRemoved = lines;
             OnModelChanged?.Invoke(_dataModel);
         }
         

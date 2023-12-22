@@ -1,15 +1,14 @@
+using _Project._Scripts.Settings;
 using _Project._Scripts.UI;
 
 namespace _Project._Scripts.Core
 {
     public class ScoreCounter
     {
-        private const int PointsPerRemovedLine = 100;
-        private const int PointsPerPlacedPiece = 10;
-        
         private UIManager _uiManager;
+        private ScoreConfig _config;
         private int _score = 0;
-        private int _lines = 0;
+        private int _linesRemoved = 0;
 
         public int Score
         {
@@ -21,36 +20,37 @@ namespace _Project._Scripts.Core
             }
         }
         
-        public int Lines
+        public int LinesRemoved
         {
-            get => _lines;
+            get => _linesRemoved;
             set
             {
-                _lines = value;
-                _uiManager.SetLinesValue(_lines);
+                _linesRemoved = value;
+                _uiManager.SetLinesValue(_linesRemoved);
             }
         }
 
-        public ScoreCounter(UIManager uiManager)
+        public ScoreCounter(UIManager uiManager, ScoreConfig config)
         {
             _uiManager = uiManager;
+            _config = config;
         }
 
         public void Init()
         {
             Score = 0;
-            Lines = 0;
+            LinesRemoved = 0;
         }
 
         public void LineRemoved()
         {
-            Lines++;
-            Score += PointsPerRemovedLine;
+            LinesRemoved++;
+            Score += _config.PointsPerRemovedLine;
         }
 
         public void PiecePlaced()
         {
-            Score += PointsPerPlacedPiece;
+            Score += _config.PointsPerPlacedPiece;
         }
     }
 }

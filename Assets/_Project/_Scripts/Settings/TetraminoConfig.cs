@@ -1,6 +1,7 @@
+using _Project._Scripts.Core;
 using UnityEngine;
 
-namespace _Project._Scripts.Core
+namespace _Project._Scripts.Settings
 {
     [CreateAssetMenu(fileName = "TetraminoConfig", menuName = "Game Settings/Tetramino Config", order = 1)]
     public class TetraminoConfig : ScriptableObject
