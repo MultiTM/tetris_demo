@@ -1,4 +1,3 @@
-using System.Linq;
 using _Project._Scripts.Settings;
 using _Project._Scripts.UI;
 
@@ -8,43 +7,38 @@ namespace _Project._Scripts.Core
     {
         private UIManager _uiManager;
         private DifficultyConfig _config;
-        private ScoreCounter _scoreCounter;
         private FieldTicker _fieldTicker;
+
+        private int _currentLevel = 0;
         
-        public DifficultyManager(UIManager uiManager, DifficultyConfig config, ScoreCounter scoreCounter, FieldTicker fieldTicker)
+        public DifficultyManager(UIManager uiManager, DifficultyConfig config, FieldTicker fieldTicker)
         {
             _config = config;
-            _scoreCounter = scoreCounter;
             _fieldTicker = fieldTicker;
             _uiManager = uiManager;
         }
-        
-        public void UpdateDifficultyLevel()
+
+        public void Init()
         {
-            var removedLines = _scoreCounter.LinesRemoved;
-            var level = GetLevel(removedLines);
-            _uiManager.SetLevelValue(level.Level);
-            _fieldTicker.SetTickDuration(level.TickDuration);
+            _currentLevel = 0;
+        }
+        
+        public void TryIncreaseDifficulty(int removedLines)
+        {
+            if (_config.Levels[_currentLevel + 1].RemovedLinesRequired <= removedLines)
+            {
+                _currentLevel++;
+            }
+            
+            _uiManager.SetLevelValue(_currentLevel);
+            var tickDuration = GetLevelTickDuration(_currentLevel);
+            _fieldTicker.SetTickDuration(tickDuration);
         }
 
-        private DifficultyConfigItem GetLevel(int removedLines)
+        private float GetLevelTickDuration(int currentLevel)
         {
-            DifficultyConfigItem level = null;
-            for (int i = _config.Levels.Count() - 1; i >= 0; i--)
-            {
-                if (_config.Levels[i].RemovedLinesRequired <= removedLines)
-                {
-                    level = _config.Levels[i];
-                    break;
-                }
-            }
-
-            if (level == null)
-            {
-                level = _config.Levels.First();
-            }
-
-            return level;
+            var levelConfig = _config.Levels[currentLevel];
+            return levelConfig.TickDuration;
         }
     }
 }

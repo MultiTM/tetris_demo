@@ -1,4 +1,3 @@
-using System;
 using _Project._Scripts.Core;
 using _Project._Scripts.Core.Input;
 using _Project._Scripts.Infrastructure.GameStates;
@@ -8,7 +7,7 @@ using Zenject;
 
 namespace _Project._Scripts.Infrastructure
 {
-    public class LevelFlow : MonoBehaviour, IInitializable, IDisposable
+    public class LevelFlow : MonoBehaviour, IInitializable
     {
         private Game _game;
         private LevelFlowProvider _provider;
@@ -52,7 +51,7 @@ namespace _Project._Scripts.Infrastructure
             _field.OnGameOver += OnGameOver;
             _field.OnPiecePlaced += _scoreCounter.PiecePlaced;
             _field.OnLineRemoved += _scoreCounter.LineRemoved;
-            _field.OnLineRemoved += _difficultyManager.UpdateDifficultyLevel;
+            _field.OnLineRemoved += () => _difficultyManager.TryIncreaseDifficulty(_scoreCounter.LinesRemoved);
             
             _game.EnterState<MenuState>();
         }
@@ -60,14 +59,6 @@ namespace _Project._Scripts.Infrastructure
         private void OnGameOver()
         {
             _game.EnterState<GameOverState>();
-        }
-
-        public void Dispose()
-        {
-            _field.OnGameOver -= OnGameOver;
-            _field.OnPiecePlaced -= _scoreCounter.PiecePlaced;
-            _field.OnLineRemoved -= _scoreCounter.LineRemoved;
-            _field.OnLineRemoved -= _difficultyManager.UpdateDifficultyLevel;
         }
     }
 }

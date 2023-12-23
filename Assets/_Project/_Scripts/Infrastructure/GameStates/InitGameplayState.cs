@@ -19,7 +19,7 @@ namespace _Project._Scripts.Infrastructure.GameStates
         {
             _provider.LevelFlow.Field.Init();
             _provider.LevelFlow.ScoreCounter.Init();
-            _provider.LevelFlow.DifficultyManager.UpdateDifficultyLevel();
+            _provider.LevelFlow.DifficultyManager.Init();
         }
     }
 }

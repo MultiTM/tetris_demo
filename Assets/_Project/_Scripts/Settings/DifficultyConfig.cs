@@ -15,7 +15,6 @@ namespace _Project._Scripts.Settings
     public class DifficultyConfigItem
     {
         public int RemovedLinesRequired;
-        public int Level;
         public float TickDuration;
     }
 }
