@@ -65,6 +65,9 @@ namespace _Project._Scripts.Infrastructure
         public void Dispose()
         {
             _field.OnGameOver -= OnGameOver;
+            _field.OnPiecePlaced -= _scoreCounter.PiecePlaced;
+            _field.OnLineRemoved -= _scoreCounter.LineRemoved;
+            _field.OnLineRemoved -= _difficultyManager.UpdateDifficultyLevel;
         }
     }
 }

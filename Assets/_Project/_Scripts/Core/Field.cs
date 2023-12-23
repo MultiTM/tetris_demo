@@ -43,7 +43,7 @@ namespace _Project._Scripts.Core
             RequestActivePiece();
         }
 
-        public void SpawnPiece(Tetramino piece)
+        private void SpawnPiece(Tetramino piece)
         {
             piece.SetPosition(PieceSpawnPoint);
             var cells = piece.Cells.Select(x => x + piece.Position).ToArray();

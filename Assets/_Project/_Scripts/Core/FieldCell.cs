@@ -18,6 +18,7 @@ namespace _Project._Scripts.Core
         private void OnValidate()
         {
             SetState(_state);
+            _renderer ??= GetComponent<SpriteRenderer>();
         }
 
         private void UpdateRenderer()
