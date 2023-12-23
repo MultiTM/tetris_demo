@@ -1,4 +1,4 @@
-using _Project._Scripts.Infrastructure;
+using _Project._Scripts.Infrastructure.GameStates;
 
 namespace _Project._Scripts.UI
 {

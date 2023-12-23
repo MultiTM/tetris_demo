@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using _Project._Scripts.Infrastructure.GameStates;
+using _Project._Scripts.Infrastructure.StateMachine;
 
 namespace _Project._Scripts.Infrastructure
 {

@@ -1,5 +1,4 @@
-using _Project._Scripts.Core.Input;
-using _Project._Scripts.Infrastructure;
+using _Project._Scripts.Infrastructure.GameStates;
 using TMPro;
 using UnityEngine;
 

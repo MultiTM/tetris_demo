@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace _Project._Scripts.Infrastructure
+namespace _Project._Scripts.Infrastructure.StateMachine
 {
     public abstract class StateMachine<T> where T : IState
     {

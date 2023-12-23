@@ -1,4 +1,6 @@
-namespace _Project._Scripts.Infrastructure
+using _Project._Scripts.Infrastructure.StateMachine;
+
+namespace _Project._Scripts.Infrastructure.GameStates
 {
     public class GameStateBase : IGameState
     {

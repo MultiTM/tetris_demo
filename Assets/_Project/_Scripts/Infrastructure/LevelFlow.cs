@@ -1,6 +1,7 @@
 using System;
 using _Project._Scripts.Core;
 using _Project._Scripts.Core.Input;
+using _Project._Scripts.Infrastructure.GameStates;
 using _Project._Scripts.UI;
 using UnityEngine;
 using Zenject;

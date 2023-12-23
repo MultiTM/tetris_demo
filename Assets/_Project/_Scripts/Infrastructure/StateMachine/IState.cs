@@ -1,4 +1,4 @@
-namespace _Project._Scripts.Infrastructure
+namespace _Project._Scripts.Infrastructure.StateMachine
 {
     public interface IState
     {

@@ -1,7 +1,8 @@
 using System;
+using _Project._Scripts.Core;
 using UnityEngine;
 
-namespace _Project._Scripts.Core
+namespace _Project._Scripts.Settings
 {
     [Serializable]
     public class TetraminoConfigItem

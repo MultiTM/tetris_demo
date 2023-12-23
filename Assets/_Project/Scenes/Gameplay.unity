@@ -386,6 +386,9 @@ GameObject:
   - component: {fileID: 307889681}
   - component: {fileID: 307889680}
   - component: {fileID: 307889679}
+  - component: {fileID: 307889684}
+  - component: {fileID: 307889683}
+  - component: {fileID: 307889682}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -407,22 +410,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fieldRenderer: {fileID: 1675723653}
   _fieldTicker: {fileID: 1675723654}
-  _gameplayInputHandler: {fileID: 1146639125}
-  _menuInputHandler: {fileID: 1764007058}
-  _gameOverInputHandler: {fileID: 590689834}
-  _pauseInputHandler: {fileID: 2063042897}
-  _fieldSettings: {fileID: 11400000, guid: aedbaa94531834277b1e02172afd57be, type: 2}
-  _tetraminoConfig: {fileID: 11400000, guid: 2e9812d13c6bd44d991ae195f35555f4, type: 2}
-  _scoreConfig: {fileID: 11400000, guid: acdb877b52c954e179ed341a59550cbd, type: 2}
-  _difficultyConfig: {fileID: 11400000, guid: aafbeb9fe9553492799871cfdf80bb56, type: 2}
   _fieldCell: {fileID: 2363497732871658053, guid: 1dd20f1898b8b460c9c6f6179b908e06, type: 3}
   _nextPieceRenderer: {fileID: 1358105446}
   levelFlow: {fileID: 1857916498}
-  _uiManager: {fileID: 841536517}
-  _hudWindow: {fileID: 616313262}
-  _menuWindow: {fileID: 572505405}
-  _pauseWindow: {fileID: 831016153}
-  _gameOverWindow: {fileID: 131276342}
 --- !u!114 &307889680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,7 +427,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
+  - {fileID: 307889684}
   - {fileID: 307889679}
+  - {fileID: 307889683}
+  - {fileID: 307889682}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -470,6 +463,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &307889682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307889678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d8c49f350ca471d9f266e691f3e6739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uiManager: {fileID: 841536517}
+  _hudWindow: {fileID: 616313262}
+  _menuWindow: {fileID: 572505405}
+  _pauseWindow: {fileID: 831016153}
+  _gameOverWindow: {fileID: 131276342}
+--- !u!114 &307889683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307889678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9cd008fdd18411bb979399c9d596232, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameplayInputHandler: {fileID: 1146639125}
+  _menuInputHandler: {fileID: 1764007058}
+  _gameOverInputHandler: {fileID: 590689834}
+  _pauseInputHandler: {fileID: 2063042897}
+--- !u!114 &307889684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307889678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35c8ed5e8d44ac78bc2fa973ae9d7f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fieldSettings: {fileID: 11400000, guid: aedbaa94531834277b1e02172afd57be, type: 2}
+  _tetraminoConfig: {fileID: 11400000, guid: 2e9812d13c6bd44d991ae195f35555f4, type: 2}
+  _scoreConfig: {fileID: 11400000, guid: acdb877b52c954e179ed341a59550cbd, type: 2}
+  _difficultyConfig: {fileID: 11400000, guid: aafbeb9fe9553492799871cfdf80bb56, type: 2}
 --- !u!1 &343445642
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using _Project._Scripts.Infrastructure;
+using _Project._Scripts.Infrastructure.GameStates;
 using Zenject;
 
 namespace _Project._Scripts.Core.Input

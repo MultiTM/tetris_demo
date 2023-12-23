@@ -35,7 +35,6 @@ namespace _Project._Scripts.Core
             while (_isRunning)
             {
                 yield return _waiter;
-                Debug.Log("Tick");
                 _field.Tick();
             }
         }

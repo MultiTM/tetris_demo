@@ -1,4 +1,4 @@
-namespace _Project._Scripts.Infrastructure
+namespace _Project._Scripts.Infrastructure.GameStates
 {
     public class InitGameplayState : GameStateBase
     {
